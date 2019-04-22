@@ -32,6 +32,7 @@ export default {
     .back
       width .64rem
       text-align center
+      color #fff
     .search
       flex 1
       display flex
