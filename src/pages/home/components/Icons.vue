@@ -108,14 +108,15 @@ export default {
 <style lang="stylus" scoped>
   @import '~mystyles/mixins.styl'
   .icons
-    padding-bottom 55%
+    padding-top 10px
+    padding-bottom 190px
     height 0
     overflow hidden
-    background-color #cdcdcd
     display flex
     flex-wrap wrap
-    .icons-item
+    .icons-item:first-child()
       margin-top 10px
+    .icons-item
       width 25%
       height 80px
       display flex
