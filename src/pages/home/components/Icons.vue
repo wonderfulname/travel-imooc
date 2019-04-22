@@ -5,7 +5,7 @@
         <div class="icons">
           <div class="icons-item" v-for="itemChild of devideList[index]" :key="itemChild.id">
             <img :src="itemChild.imgUrl" alt="">
-            <span>{{itemChild.title}}</span>
+            <div>{{itemChild.title}}</div>
           </div>
         </div>
       </swiper-slide>
@@ -28,7 +28,7 @@ export default {
         {
           id: '0001',
           imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-          title: '景点门票'
+          title: '景点门票景点门票景点门票'
         },
         {
           id: '0002',
@@ -91,13 +91,13 @@ export default {
   computed: {
     devideList () {
       let devideList = []
-      const iconsList = this.iconsList
-      for (let index = 0; index < iconsList.length; index++) {
-        if (typeof devideList[Math.floor(index / 8)] === 'undefined') {
-          devideList.push([])
+      this.iconsList.forEach((item, index) => {
+        const page = Math.floor(index / 8)
+        if (!devideList[page]) {
+          devideList[page] = []
         }
-        devideList[Math.floor(index / 8)].push(iconsList[index])
-      }
+        devideList[page].push(item)
+      })
 
       return devideList
     }
@@ -106,8 +106,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  @import '~mystyles/mixins.styl'
   .icons
-    padding-bottom 50%
+    padding-bottom 55%
     height 0
     overflow hidden
     background-color #cdcdcd
@@ -124,4 +125,8 @@ export default {
       >img
         width 55px
         height 55px
+      >div
+        width 100%
+        text-align center
+        ellipsis()
 </style>
