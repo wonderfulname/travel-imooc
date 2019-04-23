@@ -21,7 +21,6 @@ export default {
     return {
       //  轮播配置
       swiperOption: {
-        autoplay: 3000,
         pagination: '.swiper-pagination'
       },
       iconsList: [
