@@ -2,16 +2,16 @@
 <template>
   <div class="alphabet">
     <div
-      @click="handleClick(key)"
+      @click="handleClick(item)"
       @touchstart="touchstart"
       @touchmove="touchmove"
       @touchend="touchend"
       class="item"
-      v-for="(value, key) of cities"
-      :key="key"
-      :ref="key"
+      v-for="item of alphaList"
+      :key="item"
+      :ref="item"
     >
-      {{key}}
+      {{item}}
     </div>
   </div>
 </template>
@@ -27,6 +27,16 @@ export default {
       elementAY: 0
     }
   },
+  computed: {
+    alphaList () {
+      let alphaList = []
+      for (let key in this.cities) {
+        alphaList.push(key)
+      }
+
+      return alphaList
+    }
+  },
   methods: {
     handleClick (key) {
       // console.log(key)
@@ -36,22 +46,26 @@ export default {
       const elementAY = this.$refs['A'][0].offsetTop
       console.log(elementAY)
       this.elementAY = elementAY
-      // console.log(e)
     },
     touchmove (e) {
-      // console.log(e)
+      // 鼠标当前位置Y坐标
       const moveKey = e.touches[0].clientY
-      // console.log(moveKey)
       const distanceToA = moveKey - 84 - this.elementAY
-      console.log(distanceToA)
+      const indexToA = Math.floor(distanceToA / 20)
+      if (indexToA > 0 && indexToA < this.alphaList.length) {
+        const moveToEle = this.alphaList[indexToA]
+        console.log(moveToEle)
+        this.$emit('send-key', moveToEle)
+      }
+      // 当前坐标对应的字母
     },
     touchend (e) {
       // console.log(e)
-    },
-    updated () {
-      // const elementA = this.$refs['A']
-      // console.log(elementA)
     }
+  },
+  updated () {
+    // const elementA = this.$refs['A']
+    // console.log(elementA)
   }
 }
 </script>

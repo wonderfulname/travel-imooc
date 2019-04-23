@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'CityHeader',
+  name: 'CitySearch',
   data () {
     return {
       inputCity: ''
