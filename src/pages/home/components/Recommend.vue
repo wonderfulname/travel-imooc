@@ -2,11 +2,11 @@
     <div class="recommend">
       <div class="recommend-title">热销推荐</div>
       <ul class="recommend-list">
-        <li class="border-bottom" v-for="(item, index) of showList" :key="index">
-          <img :src="item.imgSrc" alt="">
+        <li class="border-bottom" v-for="(item, index) of recommendList" :key="index">
+          <img :src="item.imgUrl" alt="">
           <div class="item-info">
             <div class="title">{{item.title}}</div>
-            <div class="description">{{item.description}}</div>
+            <div class="description">{{item.desc}}</div>
             <div class="detail">查看详情</div>
           </div>
         </li>
@@ -17,30 +17,11 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props: {
+    recommendList: Array
+  },
   data () {
     return {
-      showList: [
-        {
-          imgSrc: 'http://img1.qunarzz.com/sight/p0/1604/1e/1e75f8e1af9fe81f90.img.jpg_200x200_0ded2b1b.jpg',
-          title: '世界花卉大观园世界花卉大观园世界花卉大观园',
-          description: '六点四个不具有回家吧六点四个不具有回家吧六点四个不具有回家吧六点四个不具有回家吧'
-        },
-        {
-          imgSrc: 'http://img1.qunarzz.com/sight/p0/1604/1e/1e75f8e1af9fe81f90.img.jpg_200x200_0ded2b1b.jpg',
-          title: '世界花卉大观园',
-          description: '六点四个不具有回家吧'
-        },
-        {
-          imgSrc: 'http://img1.qunarzz.com/sight/p0/1604/1e/1e75f8e1af9fe81f90.img.jpg_200x200_0ded2b1b.jpg',
-          title: '世界花卉大观园',
-          description: '六点四个不具有回家吧'
-        },
-        {
-          imgSrc: 'http://img1.qunarzz.com/sight/p0/1604/1e/1e75f8e1af9fe81f90.img.jpg_200x200_0ded2b1b.jpg',
-          title: '世界花卉大观园',
-          description: '六点四个不具有回家吧'
-        }
-      ]
     }
   }
 }

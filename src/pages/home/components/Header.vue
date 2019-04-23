@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="position">
-      <span>北京</span>
+      <span>{{city}}</span>
       <i class="iconfont icon-jiantou"></i>
     </div>
   </div>
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    city: {
+      type: String
+    }
+  }
 }
 </script>
 
