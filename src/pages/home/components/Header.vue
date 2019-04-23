@@ -9,10 +9,10 @@
         <span>输入城市/景点/游玩主题</span>
       </div>
     </div>
-    <div class="position">
+    <router-link to="/city" class="position">
       <span>{{city}}</span>
       <i class="iconfont icon-jiantou"></i>
-    </div>
+    </router-link>
   </div>
 </template>
 
