@@ -24,7 +24,8 @@ export default {
   },
   data () {
     return {
-      elementAY: 0
+      elementAY: 0,
+      timer: null
     }
   },
   computed: {
@@ -43,20 +44,22 @@ export default {
       this.$emit('send-key', key)
     },
     touchstart (e) {
-      const elementAY = this.$refs['A'][0].offsetTop
-      console.log(elementAY)
-      this.elementAY = elementAY
     },
     touchmove (e) {
-      // 鼠标当前位置Y坐标
-      const moveKey = e.touches[0].clientY
-      const distanceToA = moveKey - 84 - this.elementAY
-      const indexToA = Math.floor(distanceToA / 20)
-      if (indexToA > 0 && indexToA < this.alphaList.length) {
-        const moveToEle = this.alphaList[indexToA]
-        console.log(moveToEle)
-        this.$emit('send-key', moveToEle)
+      if (this.timer) {
+        clearTimeout(this.timer)
       }
+      this.timer = setTimeout(() => {
+        // 鼠标当前位置Y坐标
+        const moveKey = e.touches[0].clientY
+        const distanceToA = moveKey - 84 - this.elementAY
+        const indexToA = Math.floor(distanceToA / 20)
+        if (indexToA >= 0 && indexToA < this.alphaList.length) {
+          const moveToEle = this.alphaList[indexToA]
+          console.log(moveToEle)
+          this.$emit('send-key', moveToEle)
+        }
+      }, 16)
       // 当前坐标对应的字母
     },
     touchend (e) {
@@ -64,8 +67,7 @@ export default {
     }
   },
   updated () {
-    // const elementA = this.$refs['A']
-    // console.log(elementA)
+    this.elementAY = this.$refs['A'][0].offsetTop
   }
 }
 </script>
