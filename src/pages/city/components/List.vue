@@ -6,7 +6,7 @@
         <div class="title">当前城市</div>
         <div class="button-list">
           <div class="item-wrapper">
-            <div class="button-item">北京</div>
+            <div class="button-item">{{city}}</div>
           </div>
         </div>
       </div>
@@ -14,14 +14,14 @@
         <div class="title">热门城市</div>
         <div class="button-list">
           <div class="item-wrapper" v-for="item of hotCities" :key="item.id">
-            <div class="button-item">{{item.name}}</div>
+            <div @click="chooseCity(item.name)" class="button-item">{{item.name}}</div>
           </div>
         </div>
       </div>
       <div class="area" v-for="(value, key) of cities" :key="key" :ref="key">
         <div class="title">{{key}}</div>
         <div class="item-list">
-          <div class="item border-bottom" v-for="item of value" :key="item.id">{{item.name}}</div>
+          <div @click="chooseCity(item.name)" class="item border-bottom" v-for="item of value" :key="item.id">{{item.name}}</div>
         </div>
       </div>
     </div>
@@ -43,6 +43,11 @@ export default {
     return {
     }
   },
+  computed: {
+    city () {
+      return this.$store.state.city
+    }
+  },
   mounted () {
     this.scroll = new BScroll('.list')
   },
@@ -51,6 +56,12 @@ export default {
       if (this.alphKey) {
         this.scroll.scrollToElement(this.$refs[newVal][0])
       }
+    }
+  },
+  methods: {
+    chooseCity (city) {
+      this.$store.dispatch('setCityName', city)
+      this.$router.push('/')
     }
   }
 }

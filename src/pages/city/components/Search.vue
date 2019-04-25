@@ -6,7 +6,7 @@
     </div>
     <div v-show="inputCity" class="search-content">
       <ul>
-        <li class="search-item border-bottom" v-for="item of searchList" :key="item.id">
+        <li  @click="chooseCity(item.name)" class="search-item border-bottom" v-for="item of searchList" :key="item.id">
           {{item.name}}
         </li>
         <li class="no-result" v-show="!searchList.length">搜索不到结果</li>
@@ -52,6 +52,10 @@ export default {
     }
   },
   methods: {
+    chooseCity (city) {
+      this.$store.dispatch('setCityName', city)
+      this.$router.push('/')
+    }
   }
 }
 </script>
