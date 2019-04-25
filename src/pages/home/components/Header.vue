@@ -4,7 +4,7 @@
       <i class="iconfont icon-fanhui"></i>
     </div>
     <div class="search">
-      <div class="search-input">
+      <div @click="gotoCity" class="search-input">
         <i class="iconfont icon-sousuo"></i>
         <span>输入城市/景点/游玩主题</span>
       </div>
@@ -27,6 +27,11 @@ export default {
   // },
   computed: {
     ...mapState(['city'])
+  },
+  methods: {
+    gotoCity () {
+      this.$router.push({path: '/city'})
+    }
   }
 }
 </script>
