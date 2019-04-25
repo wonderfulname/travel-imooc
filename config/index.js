@@ -6,7 +6,7 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
+    // host: '192.168.1.7',
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',

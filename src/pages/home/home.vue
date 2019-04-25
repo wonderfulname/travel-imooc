@@ -23,7 +23,6 @@ export default {
   },
   data () {
     return {
-      city: '嘉兴',
       swiperList: [],
       iconsList: [],
       recommendList: []
@@ -31,10 +30,31 @@ export default {
   },
   mounted () {
     this.getHomeInfo()
+    console.log(this.city)
+    console.log('mounted')
+    this.lastCity = this.city
+  },
+  activated () {
+    console.log('activated')
+    console.log(this.city)
+    if (this.city !== this.lastCity) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+  },
+  computed: {
+    city: {
+      get () {
+        return this.$store.state.city
+      },
+      set: function (newValue) {
+        this.$store.state.city = newValue
+      }
+    }
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.json')
+      axios.get('/api/index.json?city=' + this.city)
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
