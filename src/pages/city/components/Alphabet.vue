@@ -80,7 +80,7 @@ export default {
     bottom 0
     right 0
     // background-color red
-    width 30px
+    width 50px
     display flex
     flex-direction column
     justify-content center
