@@ -7,13 +7,17 @@
 <script>
 import DetailBanner from './components/banner'
 export default {
-  name: 'Home',
+  name: 'Detail',
   components: {
     DetailBanner
   },
   data () {
     return {
     }
+  },
+  mounted () {
+    this.paraId = this.$route.params.id
+    console.log(this.paraId)
   },
   methods: {
   }
