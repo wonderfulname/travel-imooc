@@ -43,13 +43,14 @@ export default {
     }
   },
   computed: {
-    city: {
-      get () {
-        return this.$store.state.city
-      },
-      set: function (newValue) {
-        this.$store.state.city = newValue
-      }
+    city () {
+      // get () {
+      //   return this.$store.state.city
+      // },
+      // set: function (newValue) {
+      //   this.$store.state.city = newValue
+      // }
+      return this.$store.state.city
     }
   },
   methods: {
@@ -61,7 +62,6 @@ export default {
       console.log(res)
       if (res.data.ret && res.data.data) {
         const data = res.data.data
-        this.city = data.city
         this.swiperList = data.swiperList
         this.iconsList = data.iconList
         this.recommendList = data.recommendList
